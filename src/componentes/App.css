@@ -10,18 +10,20 @@
 
 body {
     background-color: #000000;
+    
 }
 
 #app {
     margin: 15px;
+    
 }
 
 .container {
-    max-width: 550px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
 }
 
 .titulo {
@@ -88,12 +90,15 @@ body {
     font-weight: 400;
     font-size: 18px;
     margin-bottom: 25px;
+    background-color: #0e0d0d;
+    padding: 10px;
+    border-radius: 5px;
 
 }
 
 .icone {
     display: flex;
-    gap: 7px;
+    gap: 10px;
 
 
 }
@@ -101,4 +106,9 @@ body {
 .icon1 {
     width: 20px;
 
+}
+
+label {
+    max-width: 20ch;
+   word-break: break-all;
 }

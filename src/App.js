@@ -7,19 +7,20 @@ import ItemTodo from './componentes/ItemTodo';
 
 function App() {
 
-    const localStorageItem = JSON.parse(localStorage.getItem('tarefa'));
-    let tarefa = localStorage.getItem('tarefa') !== null ? localStorageItem : []
 
-    const [todos, setTodos] = useState(tarefa);    
-  
+    const localStorageItem = JSON.parse(localStorage.getItem('tarefa'));
+    let tarefa = localStorage.getItem('tarefa') !== null ? localStorageItem : [];
+    
+
+
+    const [todos, setTodos] = useState(tarefa); //tarefa
+
 
     const updateLocalStorage = (itens) => {
         localStorage.setItem('tarefa', JSON.stringify(itens));
-        
     }
 
     const addTodo = (todo) => {
-        
         setTodos([...todos, todo]);
         updateLocalStorage([...todos, todo]);
 
@@ -33,6 +34,18 @@ function App() {
         updateLocalStorage(filtro);
 
 
+    }
+
+    const editarTodo = (id, novoTexto) => {
+
+        const todoArray = [...todos];
+        for (var i in todoArray) {
+            if (todoArray[i].id === id) {
+                todoArray[i].text = novoTexto;
+            }
+        }
+        setTodos(todoArray);
+        updateLocalStorage(todos);
     }
 
     const statusTodo = (id) => {
@@ -58,26 +71,26 @@ function App() {
         updateLocalStorage(todoArray);
     }
 
-    const editTodo = (id) =>{
 
-    }
 
 
     return (
 
         <div className='container'>
-            <header>
-                <h1 className='titulo'><FaCheckSquare /> MINHAS TAREFAS </h1>
-            </header>
+            <div>
+                <header>
+                    <h1 className='titulo'><FaCheckSquare /> MINHAS TAREFAS </h1>
+                </header>
 
-            <Form addTodo={addTodo} />
+                <Form addTodo={addTodo} />
 
-            {todos.map(todo =>
-                <div className='itens' key={todo.id}>
-                    <ItemTodo todo={todo} removeTodo={removeTodo} statusTodo={statusTodo} editTodo={editTodo}/>
-                </div>
-            )}
+                {todos.map(todo =>
+                    <div className='itens' key={todo.id}>
+                        <ItemTodo todo={todo} removeTodo={removeTodo} statusTodo={statusTodo} editarTodo={editarTodo} />
+                    </div>
+                )}
 
+            </div>
         </div>
 
     )
